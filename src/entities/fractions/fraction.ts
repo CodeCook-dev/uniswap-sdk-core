@@ -31,11 +31,13 @@ export class Fraction {
   }
 
   private static tryParseFraction(fractionish: BigintIsh | Fraction): Fraction {
-    if (fractionish instanceof JSBI || typeof fractionish === 'number' || typeof fractionish === 'string')
+    if (
+      (typeof fractionish === 'object' && fractionish.constructor === JSBI) ||
+      typeof fractionish === 'bigint' ||
+      typeof fractionish === 'number' ||
+      typeof fractionish === 'string'
+    )
       return new Fraction(fractionish)
-
-    if (typeof fractionish === 'object')
-      return new Fraction(JSBI.BigInt(fractionish))
 
     if ('numerator' in fractionish && 'denominator' in fractionish) return fractionish
     throw new Error('Could not parse fraction')
