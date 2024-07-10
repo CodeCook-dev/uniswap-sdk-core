@@ -407,6 +407,7 @@ var Fraction = /*#__PURE__*/function () {
 
   Fraction.tryParseFraction = function tryParseFraction(fractionish) {
     if (fractionish instanceof JSBI || typeof fractionish === 'number' || typeof fractionish === 'string') return new Fraction(fractionish);
+    if (typeof fractionish === 'object') return new Fraction(JSBI.BigInt(fractionish));
     if ('numerator' in fractionish && 'denominator' in fractionish) return fractionish;
     throw new Error('Could not parse fraction');
   } // performs floor division
