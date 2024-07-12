@@ -113,7 +113,7 @@ export class Fraction {
     const otherParsed = Fraction.tryParseFraction(other)
     return new Fraction(
       JSBI.multiply(this.numerator, otherParsed.numerator),
-      JSBI.multiply(this.denominator, otherParsed.denominator)
+      JSBI.multiply(this.denominator, otherParsed.denominator),
     )
   }
 

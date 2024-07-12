@@ -124,5 +124,10 @@ describe('Fraction', () => {
       expect(f.asFraction).toEqual(f)
       expect(f === f.asFraction).toEqual(false)
     })
+    it('returns an equivalent but not the same reference fraction', () => {
+      const f1 = new Fraction(0)
+      const f2 = JSBI.BigInt(0)
+      expect(f1.equalTo(f2)).toEqual(true)
+    })
   })
 })
